@@ -27,5 +27,5 @@ Agent ──► Site ──► 200 + content
 
 ## Links
 
-- [xenarch.dev](https://xenarch.dev) — API and docs
-- [hello@xenarch.dev](mailto:hello@xenarch.dev)
+- [xenarch.com](https://xenarch.com)
+- [hello@xenarch.com](mailto:hello@xenarch.com)
