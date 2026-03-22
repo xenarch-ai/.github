@@ -6,13 +6,26 @@ Xenarch routes micropayments between AI agents and content providers using the [
 
 ## How it works
 
-When an AI agent requests content from a Xenarch-protected site, the server returns **HTTP 402 (Payment Required)** with pricing info. The agent pays a USDC micropayment on Base L2, and the server grants access. Settlement in under 2 seconds.
+**For publishers** — monetize AI web scraping instead of blocking it:
 
 ```
-Agent ──► Site ──► 402 + price
-Agent ──► pays USDC on Base
-Agent ──► Site ──► 200 + content
+AI agent ──► your site ──► 402 Payment Required + price
+AI agent ──► pays USDC on Base
+AI agent ──► your site ──► 200 + content
 ```
+
+Set your payout wallet, configure pricing, serve `/.well-known/pay.json`. Done.
+
+**For agents** — generate a wallet or connect your own, pay for gated content automatically:
+
+```bash
+npm install -g xenarch-cli
+xenarch wallet generate       # create a new USDC wallet on Base
+xenarch check <url>           # see if a URL is gated + pricing
+xenarch pay <url>             # pay and get access
+```
+
+Private key stays on your machine (`~/.xenarch/config.json`). Fund the wallet with USDC on Base, and the CLI handles the rest — balance checks, on-chain payment, access token caching.
 
 ## Repos
 
@@ -22,8 +35,8 @@ Agent ──► Site ──► 200 + content
 | [**xenarch-plugins**](https://github.com/xenarch-ai/xenarch-plugins) | WordPress plugin for AI bot detection and x402 payments |
 | [**xenarch-js**](https://github.com/xenarch-ai/xenarch-js) | Client-side AI bot detection and payment gate (<9KB) |
 | [**xenarch-contract**](https://github.com/xenarch-ai/xenarch-contract) | USDC splitter smart contract on Base L2 |
-| [**xenarch-sdks**](https://github.com/xenarch-ai/xenarch-sdks) | SDKs and middleware — npm, PyPI, CLI |
-| [**xenarch-mcp**](https://github.com/xenarch-ai/xenarch-mcp) | MCP servers for AI agent payments |
+| [**xenarch-sdks**](https://github.com/xenarch-ai/xenarch-sdks) | SDKs, middleware, and CLI — npm, PyPI |
+| [**xenarch-mcp**](https://github.com/xenarch-ai/xenarch-mcp) | MCP servers for AI agent payments and publisher setup |
 
 ## Links
 
